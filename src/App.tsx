@@ -1,41 +1,26 @@
-import { useCallback, useState } from "react";
-import { SelectBox } from "devextreme-react";
+import { useEffect } from "react";
+import { ThemeProvider, useTheme } from "./contexts/theme";
+import { ThemeSelector } from "./components";
 
 function App() {
-  const themeData = ["light", "dark"];
-  const themeMarker = "theme.";
+  const { setTheme, getTheme } = useTheme();
 
-  const [value, setValue] = useState(themeData[0]);
-
-  const onValueChanged = useCallback((accent) => {
-    setValue(accent);
-    for (let index in document.styleSheets) {
-      const styleSheet = document.styleSheets[index],
-        href = styleSheet.href;
-      if (href) {
-        const themeMarkerPosition = href.indexOf(themeMarker);
-        const startPosition = themeMarkerPosition + themeMarker.length,
-          endPosition = href.indexOf(".css"),
-          fileNamePart = href.substring(startPosition, endPosition);
-        if (fileNamePart.includes("custom-scheme")) {
-          styleSheet.disabled = !(
-            accent === fileNamePart.substring(fileNamePart.indexOf(".") + 1)
-          );
-        }
-      }
-    }
-  }, []);
+  useEffect(() => { 
+    setTheme(getTheme()); 
+  }, [setTheme, getTheme]);
 
   return (
     <div>
       <h2>App</h2>
-      <SelectBox
-        dataSource={themeData}
-        value={value}
-        onValueChange={onValueChanged}
-      />
+      <ThemeSelector />
     </div>
   );
 }
 
-export default App;
+export default function Root() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+}
