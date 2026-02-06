@@ -25,10 +25,13 @@ export type TypographyColor =
   | "error"
   | "disabled";
 
+export type TypographyFontFamily = "primary" | "secondary";
+
 export interface TypographyProps {
   variant?: TypographyVariant;
   align?: TypographyAlign;
   color?: TypographyColor;
+  fontFamily?: TypographyFontFamily;
   component?: React.ElementType;
   className?: string;
   children: React.ReactNode;
@@ -55,6 +58,7 @@ export function Typography({
   variant = "body1",
   align = "left",
   color = "default",
+  fontFamily = "primary",
   component,
   className = "",
   children,
@@ -68,6 +72,7 @@ export function Typography({
     `typography--${variant}`,
     `typography--align-${align}`,
     `typography--color-${color}`,
+    `typography--font-${fontFamily}`,
     gutterBottom && "typography--gutter-bottom",
     noWrap && "typography--no-wrap",
     className,
