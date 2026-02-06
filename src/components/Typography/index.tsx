@@ -64,7 +64,7 @@ export function Typography({
   children,
   gutterBottom = false,
   noWrap = false,
-}: TypographyProps): JSX.Element {
+}: TypographyProps): React.ReactElement {
   const Component = component || variantToComponent[variant];
 
   const classes = [
