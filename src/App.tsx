@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ThemeProvider, useTheme } from "./contexts/theme";
-import { ThemeSelector, Typography } from "./components";
+import { ThemeSelector } from "./components/ThemeSelector";
+import { Typography } from "./components/Typography";
 
 function App() {
   const { setTheme, getTheme } = useTheme();

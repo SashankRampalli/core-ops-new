@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import SelectBox from 'devextreme-react/select-box';
 import TextBox from 'devextreme-react/text-box';
 import { useTheme } from '../../contexts/theme';
-import './ThemeSelector.scss';
+import './styles.scss';
 import type { ThemeData } from '../../types';
 
 const TextBoxInputAttr = { class: 'dx-theme-text-color theme-textbox' };
